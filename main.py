@@ -17,7 +17,6 @@ from seed.reset_db import DatabaseResetter
 import os
 from fastapi.middleware.cors import CORSMiddleware
 # Crear las tablas si no existen (DESCOMENTA ESTO DESPUÉS)
-# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Consumo Consciente API",
@@ -52,10 +51,9 @@ def startup():
     # IMPORTANTE: Comenta esto inicialmente en producción
     # Solo descomenta cuando estés seguro que la conexión funciona
     
-    # Crear tablas (descomenta después de probar conexión)
-    # print("📁 Creando tablas si no existen...")
-    # Base.metadata.create_all(bind=engine)
-    # print("✅ Tablas creadas/verificadas")
+    print("📁 Creando tablas si no existen...")
+    Base.metadata.create_all(bind=engine)
+    print("✅ Tablas creadas/verificadas")
     
     # Configuración del seeder (COMENTADO PARA PRODUCCIÓN)
     # run_reset = False   # NUNCA True en producción
