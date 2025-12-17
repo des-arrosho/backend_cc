@@ -17,7 +17,7 @@ from seed.reset_db import DatabaseResetter
 import os
 from fastapi.middleware.cors import CORSMiddleware
 # Crear las tablas si no existen (DESCOMENTA ESTO DESPUÉS)
-# Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Consumo Consciente API",
