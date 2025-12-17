@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+
 from config.db import Base, engine
 from sqlalchemy import text
 from routes.usersRoutes import user
@@ -15,7 +15,7 @@ from routes.mlsRoutes import ml_super
 from seed.seed import Seeder
 from seed.reset_db import DatabaseResetter
 import os
-
+from fastapi.middleware.cors import CORSMiddleware
 # Crear las tablas si no existen (DESCOMENTA ESTO DESPUÉS)
 # Base.metadata.create_all(bind=engine)
 
@@ -76,7 +76,7 @@ def startup():
 # ============================================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # 🔥 IMPORTANTE
+    allow_origins=["https://greenlyshop.netlify.app"],          # 🔥 IMPORTANTE
     allow_credentials=False,      # 🔥 OBLIGATORIO
     allow_methods=["*"],
     allow_headers=["*"],
