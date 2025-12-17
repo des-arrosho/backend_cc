@@ -37,10 +37,11 @@ connect_args = {}
 
 if DB_HOST.endswith("aivencloud.com"):
     connect_args = {
-        "ssl": {
-            "ca": "/etc/ssl/certs/ca-certificates.crt"
-        }
+    "ssl": {
+        "check_hostname": False,
+        "verify_mode": False
     }
+}
     print("🔒 SSL habilitado para Aiven")
 
 # 6. Crear engine
