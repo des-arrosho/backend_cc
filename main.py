@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config.db import Base, engine
-
+from sqlalchemy import text
 from routes.usersRoutes import user
 from routes.productsRoutes import product_router
 from routes.interactionRoutes import interaction
@@ -115,7 +115,7 @@ async def health():
     from config.db import engine
     try:
         with engine.connect() as conn:
-            conn.execute("SELECT 1")
+            conn.execute(text("SELECT 1"))
         db_status = "healthy"
     except Exception as e:
         db_status = f"unhealthy: {str(e)}"
@@ -131,7 +131,7 @@ def test_db():
     """Endpoint para probar conexión a base de datos"""
     try:
         with engine.connect() as conn:
-            result = conn.execute("SELECT 'Conexión exitosa' as message, VERSION() as version")
+            result = conn.execute(text("SELECT 'Conexión exitosa' as message, VERSION() as version"))
             row = result.fetchone()
             return {
                 "status": "success", 
