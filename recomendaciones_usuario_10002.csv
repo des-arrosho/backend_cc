@@ -1,0 +1,6 @@
+id,name,category,price,quantity,status,carbon_footprint,recyclable_packaging,local_origin,text,cluster,carbon_score,price_score,sustentabilidad_score,score
+61620,Café de vegano (Energético),Alimentos,5.07,60,disponible,0.53,1,1,Alimentos 1 1,0,0.999393939406183,0.9996410256428665,0.999797979802061,0.7498675990691916
+137155,Pasta de trigo duro de vegano (Energético),Alimentos,5.22,80,disponible,0.58,1,1,Alimentos 1 1,0,0.9983838384164881,0.9988717948775805,0.9994612794721628,0.749612742817165
+36806,Café de vegano (Pack familiar),Alimentos,5.36,78,disponible,0.53,1,1,Alimentos 1 1,0,0.999393939406183,0.9981538461633136,0.999797979802061,0.7495701631732811
+51893,Café de vegano (Sin aditivos),Alimentos,5.61,86,disponible,0.67,1,1,Alimentos 1 1,0,0.9965656566350373,0.996871794887837,0.9988552188783458,0.7490309246410711
+26809,Café de orgánico (Pack familiar),Alimentos,5.64,14,disponible,0.68,1,1,Alimentos 1 1,0,0.9963636364370982,0.9967179487347797,0.9987878788123661,0.7489799533906658

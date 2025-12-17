@@ -1,0 +1,6 @@
+id,name,category,price,quantity,status,carbon_footprint,recyclable_packaging,local_origin,text,cluster,carbon_score,price_score,sustentabilidad_score,score
+190,Desinfectante natural de Sin quimicos (Concentrado),Limpieza,70.5,92,disponible,3.43,1,1,Limpieza 1 1,1,0.9476295489226471,0.6646291367134316,0.9825431829742156,0.677688782234951
+104,Jabón de Sin quimicos (Zero waste),Limpieza,22.8,56,disponible,4.43,1,0,Limpieza 1 0,1,0.9292539520534003,0.9096466000120885,0.6430846506844667,0.6248547152077577
+75,Cepillo de madera de orgánico (Sin fragancia),Limpieza,35.91,10,disponible,3.62,1,0,Limpieza 1 0,1,0.9441381855174902,0.8423053223633382,0.6480460618391634,0.6128748830244166
+78,Limpiador multiusos de biodegradable (Concentrado),Limpieza,149.19,86,disponible,2.04,1,1,Limpieza 1 1,1,0.9731716285708999,0.26042737178740816,0.9910572095236333,0.5994026372145717
+43,Cepillo de madera de biodegradable (Concentrado),Limpieza,65.31,42,disponible,2.38,0,1,Limpieza 0 1,1,0.966923925635356,0.6912882695125936,0.6556413085451186,0.5849500464660543

@@ -1,0 +1,6 @@
+id,name,category,price,quantity,status,carbon_footprint,recyclable_packaging,local_origin,text,cluster,carbon_score,price_score,sustentabilidad_score,score
+97,Pan integral de artesanal (Energético),Alimentos,26.72,10,disponible,4.54,1,1,Alimentos 1 1,0,0.9272326363977832,0.8895109929653227,0.9757442121325944,0.7206254622328429
+111,Repisa de plastico reciclado (Hecho a mano),Hogar,31.97,2,disponible,11.56,1,1,Hogar 1 1,0,0.7982359463756716,0.8625436620991183,0.9327453154585572,0.7023323270573908
+91,Repisa de cera (Hecho a mano),Hogar,69.58,68,disponible,4.4,1,1,Hogar 1 1,0,0.9298052199594777,0.6693548404080807,0.9766017399864926,0.676851490077564
+107,Galletas de avena de vegano (Pack familiar),Alimentos,102.66,25,disponible,4.96,1,1,Alimentos 1 1,0,0.9195148857126997,0.4994349727787395,0.9731716285708999,0.6418384831270179
+29,Chocolate negro de vegano (Sin aditivos),Alimentos,16.1,65,disponible,0.58,1,0,Alimentos 1 0,0,1.0,0.944062050831816,0.6666666666666666,0.6388124101663631
