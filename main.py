@@ -76,7 +76,10 @@ def startup():
 # ============================================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Puedes restringir esto a ["http://localhost:3000"] si es necesario
+    allow_origins=[
+        "http://localhost:3000",
+        "https://greenlyshop.netlify.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
