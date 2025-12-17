@@ -40,7 +40,7 @@ def startup():
             print("✅ Conectado a Aiven MySQL")
             
             # Probar versión de MySQL
-            result = conn.execute("SELECT VERSION() as version")
+            result = conn.execute(text("SELECT VERSION() as version"))
             version = result.fetchone()[0]
             print(f"📊 MySQL Version: {version}")
     except Exception as e:
