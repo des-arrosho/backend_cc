@@ -4,63 +4,68 @@ from sqlalchemy.orm import sessionmaker
 import os
 from urllib.parse import quote_plus
 
-# ============================================
-# CONFIGURACIÓN BASE DE DATOS - VERSIÓN FINAL
-# ============================================
+# ==================================================
+# CONFIGURACIÓN DE BASE DE DATOS (PRODUCCIÓN SEGURA)
+# ==================================================
 
-# 1. Obtener credenciales
-DB_HOST = os.environ.get('DB_HOST', 'mysql-2b45c406-alex-74a3.j.aivencloud.com')
-DB_USER = os.environ.get('DB_USER', 'avnadmin')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'AVNS_nUGv/Me6QC6X-Ax4VNF')
-DB_PORT = os.environ.get('DB_PORT', '15361')
-DB_NAME = os.environ.get('DB_NAME', 'defaultdb')
+print("📊 Configurando conexión a la base de datos...")
 
-print("📊 Configurando base de datos...")
+# 1. Leer variables de entorno (OBLIGATORIO)
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = os.getenv("DB_PORT", "3306")
+DB_NAME = os.getenv("DB_NAME")
 
-# 2. Codificar la contraseña
+# 2. Validar que existan todas
+if not all([DB_HOST, DB_USER, DB_PASSWORD, DB_NAME]):
+    raise RuntimeError("❌ Variables de entorno de base de datos no configuradas")
+
+# 3. Codificar contraseña (por caracteres especiales)
 encoded_password = quote_plus(DB_PASSWORD)
 
-# 3. Crear URL de conexión - SIN PARÁMETROS SSL EN LA URL
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{encoded_password}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# 4. Crear URL de conexión
+DATABASE_URL = (
+    f"mysql+pymysql://{DB_USER}:{encoded_password}"
+    f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
 
-print(f"✅ URL creada: mysql+pymysql://{DB_USER}:******@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+print(f"✅ Conectando a DB en host: {DB_HOST}")
 
-# 4. Configurar SSL usando connect_args (no en la URL)
+# 5. Configurar SSL (Aiven requiere SSL)
 connect_args = {}
-if DB_HOST.endswith('aivencloud.com'):  # Si es Aiven
+
+if DB_HOST.endswith("aivencloud.com"):
     connect_args = {
-        'ssl': {
-            'ca': '/etc/ssl/certs/ca-certificates.crt'
+        "ssl": {
+            "ca": "/etc/ssl/certs/ca-certificates.crt"
         }
     }
-    print("🔒 SSL configurado para Aiven")
+    print("🔒 SSL habilitado para Aiven")
 
-# 5. Crear motor de base de datos
-try:
-    engine = create_engine(
-        DATABASE_URL,
-        connect_args=connect_args,  # SSL va aquí
-        pool_pre_ping=True,
-        pool_recycle=280,
-        pool_size=5,
-        echo=False
-    )
-    print("✅ Engine creado exitosamente")
-except Exception as e:
-    print(f"❌ Error creando engine: {e}")
-    
-    # Fallback para desarrollo local
-    print("🔄 Probando MySQL local...")
-    engine = create_engine(
-        "mysql+pymysql://root:12345@localhost:3306/db_cc",
-        pool_pre_ping=True
-    )
+# 6. Crear engine
+engine = create_engine(
+    DATABASE_URL,
+    connect_args=connect_args,
+    pool_pre_ping=True,
+    pool_recycle=280,
+    pool_size=5,
+    max_overflow=10,
+    echo=False
+)
 
-# 6. Configurar sesión
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+print("✅ Engine de SQLAlchemy creado correctamente")
+
+# 7. Configurar sesión y base
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
 Base = declarative_base()
 
-# 7. Función para obtener conexión
+# 8. Dependency para FastAPI
 def get_db():
     db = SessionLocal()
     try:
